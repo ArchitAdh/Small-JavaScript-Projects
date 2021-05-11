@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- font  -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Digital Clock</title>
+
+    <!-- Styles -->
+    <style>
+      body {
+        background-color: #2b4162;
+        background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);
+
+        color: #fff;
+      }
+      .flex {
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        align-items: center;
+      }
+      #clock {
+        display: flex;
+        place-content: center;
+        font-family: "Orbitron", sans-serif;
+        font-size: 4rem;
+        padding: 1rem;
+        min-width: 580px;
+        letter-spacing: 7px;
+        /* border: 1px solid #fff; */
+        box-shadow: -10px 10px 20px 10px inset rgba(243, 237, 237, 0.5);
+      }
+    </style>
+    <!-- End of styles -->
+  </head>
+
+  <body>
+    <div class="flex">
+      <div id="clock"></div>
+    </div>
+
+    <!-- javaScript -->
+    <script>
+      //declarations
+      function showTime() {
+        var date = new Date();
+        // console.log(date);
+        var h = date.getHours();
+        var m = date.getMinutes();
+        var s = date.getSeconds();
+        const clock = document.getElementById("clock");
+        var period = "AM";
+        // console.log(time);
+
+        //making 12 hrs format; 24hrs by default
+        if (h == 0) {
+          h = 12;
+        }
+
+        if (h > 12) {
+          h -= 12;
+          period = "PM";
+        }
+
+        //adding decimal where necessary
+
+        // h < 10 ? (h = "0" + h) : (h = h);
+        h = h < 10 ? "0" + h : h;
+
+        // s < 10 ? (s = "0" + s) : (s = s);
+        s = s < 10 ? "0" + s : s;
+
+        m = m < 10 ? "0" + m : m;
+
+        const time = h + ":" + m + ":" + s + " " + period;
+
+        //put time in clock div
+        clock.textContent = time;
+
+        //run showTime function every second
+        setTimeout(showTime, 1000);
+      }
+
+      showTime();
+    </script>
+  </body>
+</html>
